@@ -6,9 +6,9 @@
   "version": "0.0.1",
 
   "icons": {
-    "16": "assets/krassenstein-vision-icon-16.png",
-    "48": "assets/krassenstein-vision-icon-48.png",
-    "128": "assets/krassenstein-vision-icon-128.png"
+    "16": "assets/krassenstein-vision-icon-on-16.png",
+    "48": "assets/krassenstein-vision-icon-on-48.png",
+    "128": "assets/krassenstein-vision-icon-on-128.png"
   },
 
   "content_scripts": [
@@ -18,8 +18,13 @@
       "run_at": "document_end"
     }
   ],
-  "permissions": [
-    "http://twitter.com/",
-    "https://twitter.com/"
-  ]
+
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+
+  "browser_action": {},
+
+  "permissions": ["storage", "http://twitter.com/", "https://twitter.com/"]
 }
