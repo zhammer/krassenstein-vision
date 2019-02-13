@@ -149,6 +149,13 @@ function krassensteinifyPageProfile() {
     document.querySelector(".ProfileAvatar-image").src = avatar(brother);
     document.querySelector(".ProfileHeaderCard-nameLink").textContent = fullname(brother);
     document.querySelector(".ProfileHeaderCard-screennameLink").querySelector(".username").firstElementChild.textContent = username(brother);
+
+    const miniProfileCard = document.querySelector(".ProfileCardMini");
+    if (miniProfileCard) {
+        miniProfileCard.querySelector(".ProfileCardMini-avatarImage").src = avatar(brother);
+        miniProfileCard.querySelector(".fullname").textContent = fullname(brother);
+        miniProfileCard.querySelector(".username").firstElementChild.textContent = username(brother);
+    }
 }
 
 function krassensteinifyNotifications() {
@@ -178,8 +185,6 @@ function krassensteinifyNotifications() {
         quotedTweet.querySelector(".username").firstElementChild.textContent = username(brother);
 
     })
-
-
 }
 
 function krassensteinifyPage() {
