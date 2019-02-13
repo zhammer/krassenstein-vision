@@ -20,8 +20,6 @@
   ],
   "permissions": [
     "http://twitter.com/",
-    "https://twitter.com/",
-    "tabs",
-    "activeTab"
+    "https://twitter.com/"
   ]
 }
