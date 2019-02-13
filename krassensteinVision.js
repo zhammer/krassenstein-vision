@@ -100,11 +100,54 @@ function krassensteinifySmallLikeAvatars() {
     })
 }
 
+// likes and retweets popups
+function krassensteinifyAccounts() {
+    let accounts = document.querySelectorAll(".account")
+    accounts.forEach(account => {
+        const brother = krassensteinBrother(account.dataset.userId);
+        account.querySelector(".js-action-profile-avatar").src = avatar(brother);
+        account.querySelector(".fullname").textContent = fullname(brother);
+        account.querySelector(".account-group").querySelector(".username").firstElementChild.textContent = username(brother);
+    });
+}
+
+function krassensteinifyFollowsYouFollow() {
+    let userAvatars = document.querySelectorAll(".Avatar")
+    userAvatars.forEach(userAvatar => {
+        const userId = userAvatar.parentElement.dataset.userId;
+        if (!userId) {
+            return;
+        }
+        const brother = krassensteinBrother(userId);
+        userAvatar.src = avatar(brother)
+    })
+}
+
+// twitter.com/x/followers
+function krassensteinifyProfileCards() {
+    let cards = document.querySelectorAll(".ProfileCard");
+    cards.forEach(card => {
+        const userId = card.dataset.userId;
+        if (!userId) {
+          return;
+        }
+        const brother = krassensteinBrother(userId);
+        card.querySelector(".fullname").textContent = fullname(brother);
+        card.querySelector(".ProfileCard-screennameLink").querySelector(".username").firstElementChild.innerHTML = username(brother);
+        card.querySelector(".js-action-profile-avatar").src = avatar(brother);
+        card.querySelector(".ProfileCard-bg").style = `background-image: url('${coverSmall(brother)}')`
+        // TODO: description
+      });
+}
+
 function krassensteinifyPage() {
   krassensteinifyTimelineTweets();
   krassensteinifyFollowRecommendations();
   krassensteinifyHoverProfileCard();
   krassensteinifySmallLikeAvatars();
+  krassensteinifyAccounts();
+  krassensteinifyFollowsYouFollow();
+  krassensteinifyProfileCards();
 }
 
 krassensteinifyPage();
