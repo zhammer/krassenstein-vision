@@ -3,7 +3,7 @@
 
   "name": "Krassenstein Vision",
   "description": "See the world through the eyes of Brian and Ed Krassenstein.",
-  "version": "1.0",
+  "version": "0.0.1",
 
   "content_scripts": [
     {
