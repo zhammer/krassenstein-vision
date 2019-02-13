@@ -1,0 +1,21 @@
+{
+  "manifest_version": 2,
+
+  "name": "Krassenstein Vision",
+  "description": "See the world through the eyes of Brian and Ed Krassenstein.",
+  "version": "1.0",
+
+  "content_scripts": [
+    {
+      "matches": ["http://www.twitter.com/*", "https://twitter.com/*"],
+      "js": ["krassensteinVision.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "permissions": [
+    "http://twitter.com/",
+    "https://twitter.com/",
+    "tabs",
+    "activeTab"
+  ]
+}
