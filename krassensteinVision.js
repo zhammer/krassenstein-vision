@@ -188,15 +188,19 @@ function krassensteinifyNotifications() {
 }
 
 function krassensteinifyPage() {
-  krassensteinifyTimelineTweets();
-  krassensteinifyFollowRecommendations();
-  krassensteinifyHoverProfileCard();
-  krassensteinifySmallLikeAvatars();
-  krassensteinifyAccounts();
-  krassensteinifyFollowsYouFollow();
-  krassensteinifyProfileCards();
-  krassensteinifyPageProfile();
-  krassensteinifyNotifications();
+  chrome.storage.local.get(["krassensteinVisionOn"], result => {
+    if (result.krassensteinVisionOn) {
+      krassensteinifyTimelineTweets();
+      krassensteinifyFollowRecommendations();
+      krassensteinifyHoverProfileCard();
+      krassensteinifySmallLikeAvatars();
+      krassensteinifyAccounts();
+      krassensteinifyFollowsYouFollow();
+      krassensteinifyProfileCards();
+      krassensteinifyPageProfile();
+      krassensteinifyNotifications();
+    }
+  });
 }
 
 krassensteinifyPage();
