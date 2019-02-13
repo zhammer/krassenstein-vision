@@ -87,7 +87,6 @@ function krassensteinifyHoverProfileCard() {
     card.querySelector(".ProfileCard-screennameLink").querySelector(".username").firstElementChild.innerHTML = username(brother);
     card.querySelector(".js-action-profile-avatar").src = avatar(brother);
     card.querySelector(".ProfileCard-bg").style = `background-image: url('${coverSmall(brother)}')`
-    // TODO: description
   });
 }
 
@@ -136,8 +135,51 @@ function krassensteinifyProfileCards() {
         card.querySelector(".ProfileCard-screennameLink").querySelector(".username").firstElementChild.innerHTML = username(brother);
         card.querySelector(".js-action-profile-avatar").src = avatar(brother);
         card.querySelector(".ProfileCard-bg").style = `background-image: url('${coverSmall(brother)}')`
-        // TODO: description
       });
+}
+
+function krassensteinifyPageProfile() {
+    const profileNav = document.querySelector(".ProfileNav");
+    const userId = profileNav && profileNav.dataset.userId;
+    if (!userId) {
+        return
+    }
+
+    const brother = krassensteinBrother(userId)
+    document.querySelector(".ProfileAvatar-image").src = avatar(brother);
+    document.querySelector(".ProfileHeaderCard-nameLink").textContent = fullname(brother);
+    document.querySelector(".ProfileHeaderCard-screennameLink").querySelector(".username").firstElementChild.textContent = username(brother);
+}
+
+function krassensteinifyNotifications() {
+    if (!document.URL.endsWith("notifications")) {
+        return;
+    }
+
+    let userProfileLinks = document.querySelectorAll(".js-user-profile-link")
+    userProfileLinks.forEach(userProfileLink => {
+        const userId = userProfileLink.dataset.userId;
+        if (!userId) {
+            return;
+        }
+        const brother = krassensteinBrother(userId);
+        userProfileLink.firstElementChild.textContent = fullname(brother)
+    })
+
+    let quotedTweets = document.querySelectorAll(".QuoteTweet-innerContainer")
+    quotedTweets.forEach(quotedTweet => {
+        const userId = quotedTweet.dataset.userId;
+        if (!userId) {
+            return;
+        }
+
+        const brother = krassensteinBrother(userId);
+        quotedTweet.querySelector(".QuoteTweet-fullname").textContent = fullname(brother);
+        quotedTweet.querySelector(".username").firstElementChild.textContent = username(brother);
+
+    })
+
+
 }
 
 function krassensteinifyPage() {
@@ -148,6 +190,8 @@ function krassensteinifyPage() {
   krassensteinifyAccounts();
   krassensteinifyFollowsYouFollow();
   krassensteinifyProfileCards();
+  krassensteinifyPageProfile();
+  krassensteinifyNotifications();
 }
 
 krassensteinifyPage();
