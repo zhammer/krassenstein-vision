@@ -5,6 +5,12 @@
   "description": "See the world through the eyes of Brian and Ed Krassenstein.",
   "version": "0.0.1",
 
+  "icons": {
+    "16": "assets/krassenstein-vision-icon-16.png",
+    "48": "assets/krassenstein-vision-icon-48.png",
+    "128": "assets/krassenstein-vision-icon-128.png"
+  },
+
   "content_scripts": [
     {
       "matches": ["http://www.twitter.com/*", "https://twitter.com/*"],
