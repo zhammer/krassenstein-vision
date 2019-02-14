@@ -61,23 +61,23 @@ function krassensteinifyTimelineTweets() {
       return;
     }
     const brother = krassensteinBrother(userId);
-    tweet.querySelector(".fullname").textContent = fullname(brother);
-    tweet.querySelector(".username").firstElementChild.textContent = username(brother);
-    tweet.querySelector(".js-action-profile-avatar").src = avatar(brother);
+    setDekrassensteinableTextContent(tweet.querySelector(".fullname"), fullname(brother));
+    setDekrassensteinableTextContent(tweet.querySelector(".username").firstElementChild, username(brother));
+    setDekrassensteinableSrc(tweet.querySelector(".js-action-profile-avatar"), avatar(brother));
 
     // update retweet user link
     let retweetUserLink = tweet.querySelector(".js-retweet-text");
     if (retweetUserLink) {
       const brother = krassensteinBrother(retweetUserLink.firstElementChild.dataset.userId);
-      retweetUserLink.querySelector("b").textContent = username(brother);
+      setDekrassensteinableTextContent(retweetUserLink.querySelector("b"), username(brother));;
     }
 
     // update quoted tweet
     let quotedTweet = tweet.querySelector(".QuoteTweet-innerContainer");
     if (quotedTweet) {
       const brother = krassensteinBrother(quotedTweet.dataset.userId);
-      quotedTweet.querySelector(".QuoteTweet-fullname").textContent = fullname(brother);
-      quotedTweet.querySelector(".username").firstElementChild.textContent = username(brother);
+      setDekrassensteinableTextContent(quotedTweet.querySelector(".QuoteTweet-fullname"), fullname(brother));
+      setDekrassensteinableTextContent(quotedTweet.querySelector(".username").firstElementChild, username(brother));
     }
   });
 }
@@ -90,9 +90,9 @@ function krassensteinifyFollowRecommendations() {
       return;
     }
     const brother = krassensteinBrother(userId);
-    account.querySelector(".js-action-profile-avatar").src = avatar(brother);
-    account.querySelector(".fullname").textContent = fullname(brother);
-    account.querySelector(".username").firstElementChild.textContent = username(brother);
+    setDekrassensteinableSrc(account.querySelector(".js-action-profile-avatar"), avatar(brother));
+    setDekrassensteinableTextContent(account.querySelector(".fullname"), fullname(brother));
+    setDekrassensteinableTextContent(account.querySelector(".username").firstElementChild, username(brother));
   });
 }
 
@@ -104,10 +104,10 @@ function krassensteinifyHoverProfileCard() {
       return;
     }
     const brother = krassensteinBrother(userId);
-    card.querySelector(".fullname").textContent = fullname(brother);
-    card.querySelector(".ProfileCard-screennameLink").querySelector(".username").firstElementChild.innerHTML = username(brother);
-    card.querySelector(".js-action-profile-avatar").src = avatar(brother);
-    card.querySelector(".ProfileCard-bg").style = `background-image: url('${coverSmall(brother)}')`
+    setDekrassensteinableTextContent(card.querySelector(".fullname"), fullname(brother));
+    setDekrassensteinableTextContent(card.querySelector(".ProfileCard-screennameLink").querySelector(".username").firstElementChild, username(brother));
+    setDekrassensteinableSrc(card.querySelector(".js-action-profile-avatar"), avatar(brother));
+    setDekrassensteinableStyle(card.querySelector(".ProfileCard-bg"), `background-image: url('${coverSmall(brother)}')`);
   });
 }
 
@@ -116,7 +116,7 @@ function krassensteinifySmallLikeAvatars() {
     smallLikeAvatars.forEach(smallLikeAvatar => {
         const userId = smallLikeAvatar.dataset.userId;
         const brother = krassensteinBrother(userId);
-        smallLikeAvatar.firstElementChild.src = avatar(brother);
+        setDekrassensteinableSrc(smallLikeAvatar.firstElementChild, avatar(brother));
     })
 }
 
@@ -125,9 +125,9 @@ function krassensteinifyAccounts() {
     let accounts = document.querySelectorAll(".account")
     accounts.forEach(account => {
         const brother = krassensteinBrother(account.dataset.userId);
-        account.querySelector(".js-action-profile-avatar").src = avatar(brother);
-        account.querySelector(".fullname").textContent = fullname(brother);
-        account.querySelector(".account-group").querySelector(".username").firstElementChild.textContent = username(brother);
+        setDekrassensteinableSrc(account.querySelector(".js-action-profile-avatar"), avatar(brother));
+        setDekrassensteinableTextContent(account.querySelector(".fullname"), fullname(brother));
+        setDekrassensteinableTextContent(account.querySelector(".account-group").querySelector(".username").firstElementChild, username(brother));
     });
 }
 
@@ -139,7 +139,7 @@ function krassensteinifyFollowsYouFollow() {
             return;
         }
         const brother = krassensteinBrother(userId);
-        userAvatar.src = avatar(brother)
+        setDekrassensteinableSrc(userAvatar, avatar(brother))
     })
 }
 
@@ -152,9 +152,9 @@ function krassensteinifyProfileCards() {
           return;
         }
         const brother = krassensteinBrother(userId);
-        card.querySelector(".fullname").textContent = fullname(brother);
-        card.querySelector(".ProfileCard-screennameLink").querySelector(".username").firstElementChild.innerHTML = username(brother);
-        card.querySelector(".js-action-profile-avatar").src = avatar(brother);
+        setDekrassensteinableTextContent(card.querySelector(".fullname"), fullname(brother));
+        setDekrassensteinableTextContent(card.querySelector(".ProfileCard-screennameLink").querySelector(".username").firstElementChild, username(brother));
+        setDekrassensteinableSrc(card.querySelector(".js-action-profile-avatar"), avatar(brother));
         card.querySelector(".ProfileCard-bg").style = `background-image: url('${coverSmall(brother)}')`
       });
 }
@@ -167,15 +167,15 @@ function krassensteinifyPageProfile() {
     }
 
     const brother = krassensteinBrother(userId)
-    document.querySelector(".ProfileAvatar-image").src = avatar(brother);
-    document.querySelector(".ProfileHeaderCard-nameLink").textContent = fullname(brother);
-    document.querySelector(".ProfileHeaderCard-screennameLink").querySelector(".username").firstElementChild.textContent = username(brother);
+    setDekrassensteinableSrc(document.querySelector(".ProfileAvatar-image"), avatar(brother));
+    setDekrassensteinableTextContent(document.querySelector(".ProfileHeaderCard-nameLink"), fullname(brother));
+    setDekrassensteinableTextContent(document.querySelector(".ProfileHeaderCard-screennameLink").querySelector(".username").firstElementChild, username(brother));
 
     const miniProfileCard = document.querySelector(".ProfileCardMini");
     if (miniProfileCard) {
-        miniProfileCard.querySelector(".ProfileCardMini-avatarImage").src = avatar(brother);
-        miniProfileCard.querySelector(".fullname").textContent = fullname(brother);
-        miniProfileCard.querySelector(".username").firstElementChild.textContent = username(brother);
+        setDekrassensteinableSrc(miniProfileCard.querySelector(".ProfileCardMini-avatarImage"), avatar(brother));
+        setDekrassensteinableTextContent(miniProfileCard.querySelector(".fullname"), fullname(brother));
+        setDekrassensteinableTextContent(miniProfileCard.querySelector(".username").firstElementChild, username(brother));
     }
 }
 
@@ -191,7 +191,7 @@ function krassensteinifyNotifications() {
             return;
         }
         const brother = krassensteinBrother(userId);
-        userProfileLink.firstElementChild.textContent = fullname(brother)
+        setDekrassensteinableTextContent(userProfileLink.firstElementChild, fullname(brother))
     })
 
     let quotedTweets = document.querySelectorAll(".QuoteTweet-innerContainer")
@@ -202,8 +202,8 @@ function krassensteinifyNotifications() {
         }
 
         const brother = krassensteinBrother(userId);
-        quotedTweet.querySelector(".QuoteTweet-fullname").textContent = fullname(brother);
-        quotedTweet.querySelector(".username").firstElementChild.textContent = username(brother);
+        setDekrassensteinableTextContent(quotedTweet.querySelector(".QuoteTweet-fullname"), fullname(brother));
+        setDekrassensteinableTextContent(quotedTweet.querySelector(".username").firstElementChild, username(brother));
 
     })
 }
