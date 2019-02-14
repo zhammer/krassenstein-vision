@@ -226,3 +226,21 @@ function krassensteinifyPage() {
 
 krassensteinifyPage();
 setInterval(krassensteinifyPage, 500);
+
+function dekrassensteinifyPage() {
+    document.querySelectorAll('[data-krassenstein-original-text]').forEach(node => {
+        node.textContent = node.dataset.krassensteinOriginalText;
+    });
+    document.querySelectorAll('[data-krassenstein-original-src]').forEach(node => {
+        node.src = node.dataset.krassensteinOriginalSrc;
+    });
+    document.querySelectorAll('[data-krassenstein-original-style]').forEach(node => {
+        node.style = node.dataset.krassensteinOriginalStyle;
+    });
+}
+
+chrome.runtime.onMessage.addListener(message => {
+    if (message.action === "TURNED_OFF") {
+        dekrassensteinifyPage()
+    }
+})
