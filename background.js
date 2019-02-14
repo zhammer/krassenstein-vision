@@ -15,6 +15,8 @@ chrome.browserAction.onClicked.addListener(() => {
   chrome.browserAction.getTitle({}, currentTitle => {
     const isOn = currentTitle !== TITLE_OFF;
     const nextOn = !isOn;
+    // no need to use title and local storage to keep state. should use local storage as definitive
+    // `on` and then set title based that.
     chrome.storage.local.set({ krassensteinVisionOn: nextOn }, () => {
       chrome.browserAction.setTitle({ title: nextOn ? TITLE_ON : TITLE_OFF }, () => {
         chrome.browserAction.setIcon({
