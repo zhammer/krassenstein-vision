@@ -26,5 +26,5 @@
 
   "browser_action": {},
 
-  "permissions": ["storage", "http://twitter.com/", "https://twitter.com/"]
+  "permissions": ["storage", "activeTab", "http://twitter.com/", "https://twitter.com/"]
 }

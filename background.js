@@ -24,6 +24,11 @@ chrome.browserAction.onClicked.addListener(() => {
             128: buildIconPath(nextOn, 128)
           }
         });
+        if (!nextOn) {
+            chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
+                chrome.tabs.sendMessage(tabs[0].id, { action: "TURNED_OFF" })
+            });
+        }
       });
     });
   });
