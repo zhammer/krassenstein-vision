@@ -32,6 +32,27 @@ function coverSmall(brother) {
     return brother === BRIAN ? BRIAN_COVER_SMALL : ED_COVER_SMALL;
 }
 
+function setDekrassensteinableTextContent(domNode, text) {
+    if (!domNode.dataset.krassensteinOriginalText) {
+        domNode.dataset.krassensteinOriginalText = domNode.textContent;
+    }
+    domNode.textContent = text;
+}
+
+function setDekrassensteinableSrc(domNode, src) {
+    if (!domNode.dataset.krassensteinOriginalSrc) {
+        domNode.dataset.krassensteinOriginalSrc = domNode.src;
+    }
+    domNode.src = src;
+}
+
+function setDekrassensteinableStyle(domNode, style) {
+    if (!domNode.dataset.krassensteinOriginalStyle) {
+        domNode.dataset.krassensteinOriginalStyle = domNode.style;
+    }
+    domNode.style = style;
+}
+
 function krassensteinifyTimelineTweets() {
   let tweets = document.querySelectorAll(".tweet");
   tweets.forEach(tweet => {
